@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualisasi Grafik Garis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #chart-container {
+            width: 80%;
+            margin: auto;
+        }
+    </style>
+    <!-- Sertakan pustaka Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Visualisasi Grafik Garis</h1>
+    <div id="chart-container">
+        <canvas id="lineChart"></canvas>
+    </div>
+
+    <script>
+        // URL data CSV
+        const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vST67-Z2iTrRHEs_TpS6ivNgTViMiZLSDgfErivtILbtQdivbKY9C63lYqRusouoJdmcTv2I0AiOgJA/pub?output=csv';
+
+        // Fungsi untuk memuat data CSV
+        async function loadCSV(url) {
+            const response = await fetch(url);
+            const data = await response.text();
+            return data;
+        }
+
+        // Fungsi untuk mem-parse data CSV
+        function parseCSV(data) {
+            const rows = data.split('\n').slice(1); // Hilangkan baris header
+            const labels = [];
+            const values = [];
+
+            rows.forEach(row => {
+                const cols = row.split(',');
+                labels.push(cols[0]); // Asumsikan kolom pertama adalah label (misalnya, tanggal)
+                values.push(parseFloat(cols[1])); // Asumsikan kolom kedua adalah nilai
+            });
+
+            return { labels, values };
+        }
+
+        // Fungsi untuk membuat grafik garis
+        function createLineChart(labels, data) {
+            const ctx = document.getElementById('lineChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Data',
+                        data: data,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: true,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Grafik Garis dari Data CSV'
+                        }
+                    }
+                }
+            });
+        }
+
+        // Fungsi utama untuk memuat dan menampilkan grafik
+        async function main() {
+            const csvData = await loadCSV(csvUrl);
+            const { labels, values } = parseCSV(csvData);
+            createLineChart(labels, values);
+        }
+
+        // Panggil fungsi utama
+        main();
+    </script>
+</body>
+</html>

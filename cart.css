@@ -1,3 +1,8 @@
+/* Menghilangkan efek tap highlight pada mobile */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
 /* Persistent Shopping Cart Styles */
 .floating-cart-container {
     position: fixed;
