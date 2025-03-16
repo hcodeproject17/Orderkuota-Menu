@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Hakod</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1><i class="fas fa-list"></i>Menu Weladalah by Hakod</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a href="menu.html" class="active"><i class="fas fa-list"></i> Menu</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div id="timewelcome-container" class="welcome-message">
+            <h2>
+                <span id="greeting"></span>
+                <span id="current-time"></span>
+            </h2>
+        </div>
+
+        <div id="loading-container" class="loading-container">
+            <p>Memuat data menu...</p>
+            <div id="terminal-output" class="terminal-output">
+                <div class="terminal-line">Menginisialisasi koneksi...</div>
+                <div class="terminal-line">Mengakses database menu...</div>
+                <div class="terminal-line">Mengunduh informasi terkini...</div>
+                <div class="terminal-line">Memproses data...</div>
+            </div>
+        </div>
+
+        <!-- Search Section -->
+        <section id="search-section" class="feature-section">
+            <h2 class="section-title"><i class="fas fa-search"></i> Cari Menu</h2>
+            <div class="search-container">
+                <div class="search-form">
+                    <input type="text" id="menu-search" class="search-input" placeholder="Cari menu...">
+                    <button id="search-button" class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="filter-container">
+                    <select id="category-filter" class="filter-select">
+                        <option value="all">Semua Kategori</option>
+                        <!-- Categories will be populated dynamically -->
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Menu Categories Section -->
+        <section id="menu-section" class="feature-section">
+            <h2 class="section-title"><i class="fas fa-th-list"></i> Daftar Menu</h2>
+            <div id="menu-container" class="menu-container">
+                <!-- Menu categories and items will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Selected Items Section -->
+        <section id="selected-items-section" class="feature-section">
+            <h2 class="section-title"><i class="fas fa-shopping-cart"></i> Item Terpilih</h2>
+            <div id="selected-items-container" class="selected-items-container">
+                <p class="empty-selection">Belum ada item yang dipilih</p>
+            </div>
+            <div class="whatsapp-order">
+                <button id="order-button" class="whatsapp-button" disabled>
+                    <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- WhatsApp Contact Section -->
+    <section class="whatsapp-section">
+        <div class="container">
+            <div class="whatsapp-container">
+                <div class="whatsapp-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <div class="whatsapp-text">
+                    <h3>Siap berbisnis?</h3>
+                    <p>Hubungi kami melalui WhatsApp untuk pertanyaan atau bantuan lebih lanjut</p>
+                </div>
+                <a href="https://wa.me/6285794281784" class="whatsapp-button" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Hubungi Sekarang
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <!-- Floating Cart Container -->
+    <div id="floating-cart" class="floating-cart-container">
+        <div class="cart-toggle">
+            <i class="fas fa-shopping-cart"></i>
+        </div>
+        <div class="cart-header">
+            <h3 class="cart-title"><i class="fas fa-shopping-cart"></i> Keranjang</h3>
+        </div>
+        <div class="cart-content">
+            <div id="floating-cart-items" class="cart-items-list">
+                <!-- Cart items will be loaded here -->
+            </div>
+            <div id="cart-empty" class="cart-empty">
+                <p>Keranjang kosong</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-whatsapp-order">
+                <button id="cart-order-button" class="cart-order-button" disabled>
+                    <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="site-footer">
+        <div class="container">
+            <p>Terakhir diperbarui: <span id="last-update">Loading...</span></p>
+            <p>&copy; 2025 Weladalah Menu. Semua hak dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="menu.js"></script>
+</body>
+</html>
